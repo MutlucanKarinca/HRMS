@@ -5,25 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.Table;
-
+import javax.persistence.InheritanceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="job_titles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
+@Table(name="users")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="title", unique=true, nullable=false)
-	private String title;
+	@Column(name="email", unique=true, nullable=false)
+	private String email;
 	
-	
+	@Column(name="password", nullable=false)
+	private String password;
 }

@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
+import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobDao;
 import kodlamaio.hrms.entities.concretes.Job;
 
@@ -21,8 +26,27 @@ public class JobManager implements JobService{
 	}
 
 	@Override
-	public List<Job> getAll() {
-		return this.jobDao.findAll();
+	public DataResult<List<Job>> getAll() {
+		return new SuccessDataResult<List<Job>>(this.jobDao.findAll(),"Data Listelendi");
 	}
 
+	@Override
+	public Result add(Job job) {
+		if (checkJobTitle(job.getTitle())) {
+			this.jobDao.save(job);
+			return new SuccessResult("Pozisyon eklendi");			
+		}
+		return new ErrorResult();
+	}
+
+	public boolean checkJobTitle(String title) {
+		 
+		if(this.jobDao.getByTitle(title).isEmpty()) {
+			return true;
+		}
+		else {
+			System.out.println("Bu pozisyon daha önce açılmış.");
+			return false;
+		}
+	}
 }
