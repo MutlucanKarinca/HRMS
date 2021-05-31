@@ -2,6 +2,7 @@ package kodlamaio.hrms.core.utilities.services.concretes;
 
 import java.rmi.RemoteException;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import kodlamaio.hrms.core.utilities.services.abstracts.MernisCheckService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
-
+@Primary
 @Component
 public class MernisCheckAdapter implements MernisCheckService{
 

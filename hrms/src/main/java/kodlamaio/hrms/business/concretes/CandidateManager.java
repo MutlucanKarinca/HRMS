@@ -29,6 +29,7 @@ public class CandidateManager implements CandidateService{
 	private EmailSendService emailSendService;
 	private UserDao userDao;
 	
+	
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao,
 			EmailCheckService emailCheckService,

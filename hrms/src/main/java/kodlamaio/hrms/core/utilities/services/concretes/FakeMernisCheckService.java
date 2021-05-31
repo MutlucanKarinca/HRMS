@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import kodlamaio.hrms.core.utilities.services.abstracts.MernisCheckService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 
-@Primary
+//@Primary
 @Component
 public class FakeMernisCheckService implements MernisCheckService{
 
