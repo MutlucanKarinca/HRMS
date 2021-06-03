@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,6 +35,7 @@ public class Candidate extends User{
 
 	@Column(name = "last_name")
 	private String lastName;
+	
 	
 	@Column(name="nationality_id")
 	private String nationalityId;

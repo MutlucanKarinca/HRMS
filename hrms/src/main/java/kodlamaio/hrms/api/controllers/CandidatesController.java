@@ -31,7 +31,7 @@ public class CandidatesController {
 		return this.candidateService.add(candidate,passwordAgain);
 	}
 	
-	@GetMapping("getall")
+	@GetMapping("/getall")
 	public DataResult<List<Candidate>> getAll(){
 		return this.candidateService.getAll();
 	}
