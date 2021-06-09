@@ -78,7 +78,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public Result Add(JobAdvertisement jobAdvertisement) {
+	public Result add(JobAdvertisement jobAdvertisement) {
 		if (checkIfInformation(jobAdvertisement)) {
 			this.jobAdvertisementDao.save(jobAdvertisement);
 			return new SuccessResult("İş ilanı eklendi.");
@@ -125,6 +125,43 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new ErrorDataResult<List<JobAdvertisement>>("Şirketin iş ilanı bulunamadı");
 	}
 
+
+
+	@Override
+	public Result setPassiveAdvertisement(int id) {
+		if (getById(id) == null) {
+			return new ErrorResult("Böyle bir iş ilanı bulunmamaktadır.");
+
+		}
+		if (getById(id).getData().isActive() == false) {
+			return new ErrorResult("Bu iş ilanı zaten pasif durumdadır.");
+		}
+
+		JobAdvertisement jobAdvertisement = getById(id).getData();
+		jobAdvertisement.setActive(false);
+		update(jobAdvertisement);
+		return new SuccessResult("İş ilanı pasif yapıldı.");
+	
+	}
+
+
+
+	@Override
+	public DataResult<JobAdvertisement> getById(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getById(id));
+	}
+
+
+
+	@Override
+	public Result update(JobAdvertisement jobAdvertisement) {
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("İş ilanı güncellendi");
+	}
+
+
+
+	
 	
 
 }

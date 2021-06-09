@@ -27,5 +27,11 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueOrderByCreatedDateAsc();
 	
-	Result Add(JobAdvertisement jobAdvertisement);
+	Result add(JobAdvertisement jobAdvertisement);
+	Result update(JobAdvertisement jobAdvertisement);
+	
+	Result setPassiveAdvertisement(int id);
+	
+	DataResult<JobAdvertisement> getById(int id);
+	
 }

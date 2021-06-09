@@ -5,37 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.InheritanceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name="edu_graduates")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="users")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+public class Graduate {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
+	@NotBlank
 	private int id;
 	
-
-	@Email
-	@NotBlank
-	@NotNull
-	@Column(name="email", unique=true, nullable=false)
-	private String email;
-	
-	@Column(name="password", nullable=false)
-	private String password;
+	@Column(name="description")
+	@NotBlank(message = "Boş geçilemez.")
+	private String description;
 }

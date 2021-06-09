@@ -30,13 +30,15 @@ public class CityManager implements CityService{
 		return new SuccessDataResult<List<City>>(this.cityDao.findAll(),"Data Listelendi");
 	}
 
+	/*
+	 * @Override public Result add(City city) { if
+	 * (checkCityName(city.getCityName())) { this.cityDao.save(city); return new
+	 * SuccessResult("Şehir eklendi"); } return new ErrorResult(); }
+	 */
 	@Override
 	public Result add(City city) {
-		if (checkCityName(city.getCityName())) {
-			this.cityDao.save(city);
-			return new SuccessResult("Şehir eklendi");			
-		}
-		return new ErrorResult();
+		this.cityDao.save(city);
+	    return new SuccessResult("City has been added.");
 	}
 	
 	public boolean checkCityName(String cityName) {
@@ -45,7 +47,7 @@ public class CityManager implements CityService{
 			return true;
 		}
 		else {
-			System.out.println("Bu pozisyon daha önce açılmış.");
+			System.out.println("Bu şehir daha önce eklenmiş.");
 			return false;
 		}
 	}

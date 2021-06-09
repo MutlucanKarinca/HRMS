@@ -38,7 +38,7 @@ public class JobAdvertisementsController {
 	}	
 	@PostMapping("/add")
 	public Result jobAdvertisementAdd(@RequestBody JobAdvertisement jobAdvertisement) {
-		return this.jobAdvertisementService.Add(jobAdvertisement);
+		return this.jobAdvertisementService.add(jobAdvertisement);
 	}
 	
 	@GetMapping("/getByIsActiveTrueOrderByCreatedDateDesc")
@@ -75,5 +75,16 @@ public class JobAdvertisementsController {
 	public DataResult<List<JobAdvertisement>> getAllByIsActiveAndCreatedDateDesc()
 	{
 		return this.jobAdvertisementService.getAllByIsActiveAndCreatedDateDesc();
+	}
+	@GetMapping("/getById")
+	public DataResult<JobAdvertisement> getById(int id)
+	{
+		return this.jobAdvertisementService.getById(id);
+		
+	}
+	@PostMapping("setPassiveAdvertisement")
+	public Result setPassiveAdvertisement(int id) 
+	{
+		return this.jobAdvertisementService.setPassiveAdvertisement(id);
 	}
 }
